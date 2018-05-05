@@ -6,12 +6,18 @@ import (
 	"log"
 	"net/http"
 
+	model "./model"
+
 	"github.com/julienschmidt/httprouter"
+	"github.com/urfave/negroni"
 )
 
 func main() {
-	router := NewRouter()
-	log.Fatal(http.ListenAndServe(":8080", router))
+	c := &model.AppContext{Repo: model.InitialRepo()}
+	router := NewRouter(c)
+	n := negroni.Classic() // Include Logger, Static, Recovery
+	n.UseHandler(router)
+	log.Fatal(http.ListenAndServe(":8080", n))
 }
 
 // Index : Http server index
