@@ -48,6 +48,11 @@ describe("task/", function () {
                 }
             }
         )
+        expect(response).to.have.json('id', function(id) {
+            expect(id).to.be.above(2);
+        })
         return chakram.wait();
     })
+
+    
 });

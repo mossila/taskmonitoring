@@ -14,5 +14,6 @@ func NewRouter(c *model.AppContext) *httprouter.Router {
 	router.GET("/task", app.Tasks)
 	router.GET("/tasks", app.Tasks)
 	router.GET("/task/:id", app.TaskByID)
+	router.POST("/task", app.CreateTask)
 	return router
 }
