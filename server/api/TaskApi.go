@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -44,10 +43,20 @@ func (a *API) TaskByID(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 func (a *API) CreateTask(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	var t model.Task
 	err := util.Binding(r, &t)
-	fmt.Printf("Binding done with %v\n", err)
 	if err != nil {
 		panic(err)
 	}
 	nt := a.Context.Repo.CreateTask(t)
+	jsonResponse(w, nt)
+}
+
+// UpdateTask : PUT API/task
+func (a *API) UpdateTask(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	var t model.Task
+	err := util.Binding(r, &t)
+	if err != nil {
+		panic(err)
+	}
+	nt := a.Context.Repo.UpdateTask(t)
 	jsonResponse(w, nt)
 }
