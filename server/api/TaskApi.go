@@ -2,11 +2,11 @@ package api
 
 import (
 	"encoding/json"
+	"github.com/mossila/taskmonitoring/server/model"
+	"github.com/mossila/taskmonitoring/server/util"
 	"net/http"
 	"strconv"
 
-	model "../model"
-	util "../util"
 	"github.com/julienschmidt/httprouter"
 )
 

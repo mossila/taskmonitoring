@@ -1,9 +1,10 @@
 package main
 
 import (
-	api "./api"
-	model "./model"
 	"github.com/julienschmidt/httprouter"
+	"github.com/mossila/taskmonitoring/server/api"
+	"github.com/mossila/taskmonitoring/server/model"
+	"net/http"
 )
 
 // NewRouter : Construct new router
@@ -17,4 +18,9 @@ func NewRouter(c *model.AppContext) *httprouter.Router {
 	router.POST("/task", app.CreateTask)
 	router.PUT("/task", app.UpdateTask)
 	return router
+}
+
+// Index - temporary index
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+
 }
